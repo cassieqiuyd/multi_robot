@@ -1,0 +1,10 @@
+<launch>
+
+  <include file="$(find multi_robot)/launch/tb3.launch"/>
+  <include file="$(find multi_robot)/launch/tb3_gmapping.launch"/>
+  <include file="$(find multi_robot)/launch/tb3_map.launch"/>
+  <include file="$(find multi_robot)/launch/tb3_explore.launch"/>
+
+  <!--node pkg="rosbag" type="record" name="record" output="screen" args="/tb3_0/imu /tb3_1/imu /tb3_0/scan /tb3_1/scan /tb3_0/odom /tb3_1/odom   -o /home/users/yiqiu/kin2_ws/s" /-->
+
+</launch>

@@ -1,0 +1,26 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="waffle"/>
+  <!--include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch">
+    <arg name="x_pos" value="7.0"/>
+    <arg name="y_pos" value="-1.0"/>
+    <arg name="z_pos" value="0.0"/>
+  </include-->
+    <include file="$(find multi_robot)/launch/g.launch">
+    <!--arg name="x_pos" value="7.0"/>
+    <arg name="y_pos" value="-1.0"/>
+    <arg name="z_pos" value="0.0"/-->
+  </include>
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+    <arg name="slam_methods" value="gmapping"/>
+    
+  </include>
+  
+  <node pkg="flat_world_imu_node" type="flat_world_imu_node" name="flat_world_imu_node" output="screen">
+    <remap from="imu_in" to="/imu" />
+    <remap from="imu_out" to="/flat_imu" />
+  </node>
+
+  <node pkg="rosbag" type="record" name="record" output="screen" args="/flat_imu /scan -o /home/users/yiqiu/kin2_ws/try.bag" />
+
+</launch>
